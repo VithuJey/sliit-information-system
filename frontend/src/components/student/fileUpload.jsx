@@ -1,5 +1,7 @@
 import React from 'react';
 import './fileUpload.css'
+import '../../stylesheet/common.css'
+
 class FileUpload extends React.Component {
   constructor(props) {
     super(props);
@@ -36,23 +38,24 @@ class FileUpload extends React.Component {
 /*       response.json().then((body) => {
         this.setState({ imageURL: `http://localhost:4000/${body.file}` });
       }); */
+      alert('File upload sucuess');
     });
   }
 
   render() {
     return (
       <form onSubmit={this.handleUploadImage}>
-        <div>
+        <div className="font">
           <input 
-            className="fileInput"
+            className="fileInput font"
             ref={(ref) => { this.uploadInput = ref; }} 
             type="file"
             accept="image/png, image/jpg, .doc,.docx, .pdf, " 
           />
         </div>
-        <div>
+        <div className="font">
           <input 
-            className="assignmentId" 
+            className="assignmentId font" 
             ref={(ref) => { this.fileName = ref; }} 
             type="text" 
             placeholder="Enter the assigment/exam id" 
@@ -60,7 +63,7 @@ class FileUpload extends React.Component {
         </div>
         <br />
         <div>
-          <button className="button">Upload</button>
+          <button className="btn btn-warning font" style={{margin:"10px"}}>Upload</button>
         </div>
         {/* <img src={this.state.imageURL} alt="img" /> */}
       </form>

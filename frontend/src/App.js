@@ -10,6 +10,7 @@ import Instructor from './components/admin/InstructorView'
 import Student from './components/admin/StudentView'
 import Course from './components/admin/CourseView'
 import AppRouter from './routers/AdminRouter'
+import ViewCourses from './components/student/viewCourses'
 
 function App() {
   return (
