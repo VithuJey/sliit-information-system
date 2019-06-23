@@ -7,7 +7,7 @@ const Student = new Schema({
     type: String,
     length: 10,
     required: true,
-    unique:true
+    unique: true
   },
   name: {
     type: String,
@@ -31,11 +31,11 @@ const Student = new Schema({
     type: String,
     required: true
   },
-  year:{
-    type:String
+  year: {
+    type: String
   },
-  semester:{
-    type:String
+  semester: {
+    type: String
   },
   courses: [
     {
@@ -47,6 +47,12 @@ const Student = new Schema({
     {
       type: ObjectId,
       ref: "Submission"
+    }
+  ],
+  notifications: [
+    {
+      type: ObjectId,
+      ref: "Notification"
     }
   ]
 });
