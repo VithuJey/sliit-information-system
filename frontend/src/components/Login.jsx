@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios'
 import AdminHome from '../components/admin/AdminHome'
 import AdminRouter from '../routers/AdminRouter'
+import ViewCourses from '../components/student/viewCourses'
 import '../stylesheet/common.css'
 
 export default class Login extends Component {
@@ -32,7 +33,7 @@ export default class Login extends Component {
         if (regNo == '' || password == '') {
             alert("Registration number or password is empty")
         } else {
-            window.sessionStorage.setItem('regNo', regNo);
+            window.sessionStorage.setItem('regNo', regNo.toUpperCase());
 
             // regNo begins with AD or ST or IN use particular GET to authenticate
             if (regNo.startsWith("A") || regNo.startsWith("a")) {
@@ -54,9 +55,11 @@ export default class Login extends Component {
                 axios.get('/student/get/' + regNo.toUpperCase())
                     .then(resJson => {
                         console.log(resJson)
-                        if (resJson.data.data.length) {
-                            if (resJson.data.data[0].password === password) {
-                                ReactDOM.render(<AdminRouter />, document.getElementById('root'));
+
+                        if(resJson.data.data.length) {
+                            if(resJson.data.data[0].password === password) {
+                                ReactDOM.render(<ViewCourses/>, document.getElementById('root'));
+
                             } else {
                                 alert("You have entered an invalid Registration ID or password")
                             }

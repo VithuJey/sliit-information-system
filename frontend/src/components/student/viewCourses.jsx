@@ -2,6 +2,7 @@ import React from 'react'
 import Course from './course'
 import './viewCourses.css'
 import ViewAssignemnts from './viewAssignments'
+import '../../stylesheet/common.css'
 
 class ViewCourses extends React.PureComponent{
     constructor(props){
@@ -18,7 +19,7 @@ class ViewCourses extends React.PureComponent{
              response.json().then((body) => {
                 if(body.confirmation==="Success"){
                      let availableCourses = body.data.filter(course => {
-                        return course.available
+                        return /* course.available */true
                     });
                     this.setState({availableCourses})
                 }
@@ -31,7 +32,7 @@ class ViewCourses extends React.PureComponent{
             <div className="container">
                 <h2>Courses</h2>
                 <div>
-                    {this.state.availableCourses && this.state.availableCourses.length > 0 && this.state.availableCourses.map( (course) => {
+                    {/* this.state.availableCourses && this.state.availableCourses.length > 0 ? */ this.state.availableCourses && this.state.availableCourses.map( (course) => {
                         return(
                             <div 
                                 className="card cardStyles"
@@ -40,15 +41,17 @@ class ViewCourses extends React.PureComponent{
                                         this.setState({ selectedCourse:course })
                                 }} 
                             >
+                            <div class="card-body">
                                 <Course 
                                     code={course.code} 
                                     name={course.name} 
                                     selectedCourse={course}
                                 />
+                                </div>
                                 {this.state.selectedCourse && this.state.selectedCourse._id === course._id && <ViewAssignemnts  assignments={this.state.selectedCourse.assignments} /> }
                             </div>
                         )
-                    })}
+                    })/* :<div>Join course</div> */}
                 </div>
             </div>
         )
